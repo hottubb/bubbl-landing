@@ -1,1 +1,78 @@
-<h1>Hello</h1>
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>bubbl</title>
+    <meta name="description" content="bubbl">
+    <meta name="author" content="bubbl">
+    <meta name="keywords" content="clip, snip, flip, online videos, bubbl">
+    <meta name="generator" content="">
+
+    <!-- Mobile viewport optimized: h5bp.com/viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'REPLACEME']);
+        _gaq.push(['_setDomainName', 'REPLACEME']);
+        _gaq.push(['_trackPageview']);
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+</head>
+<body>
+<h1>Join Bubbl Now </h1>
+
+<video poster="/videos/bubbl_image.png" id="background_video" autoplay>
+    <source src='/videos/bubbl_footage.mp4' type='video/mp4'/>
+    <source src='/videos/bubbl_footage.webm' type='video/webm'/>
+    <source src='/videos/bubbl_footage.ogv' type='video/ogg'/>
+    <p>Your browser doesn t support html5.</p>
+</video>
+
+
+
+<!--jquery-->
+<script type="text/javascript" src="/js/vendor/jquery.min.js"></script>
+<!--script-->
+<script type="text/javascript" src="/js/script-ck.js"></script>
+<script>
+    $(function() {
+        $("#signup_beta").click(function() {
+            var bubblEmail ='email=' + $("input#inputEmail").val()+'&username=' + $("input#inputUsername").val();
+            $.ajax({
+                type: "POST",
+                url: "/add",
+                data: bubblEmail,
+                success: function(e) {
+                    $('#get_alerted_min').html("<div id='message'></div>");
+                    if (e.stat_code == 2){
+                        $('#message').html("<h4>You have already signed up for our beta.</h4>")
+                                .append("<p class='sub_message'>Your invite is coming soon.</p>");
+                    }
+                    else{
+                    $('#message').html("<h4>Thank you for registering for our beta!</h4>")
+                            .append("<p class='sub_message'>Confirm your email and we will be in touch soon.</p>")
+                            .hide()
+                            .fadeIn(1500, function() {
+                                $('#message').append("<div></div>");
+                            });
+                    }
+                }
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

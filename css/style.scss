@@ -1,0 +1,38 @@
+//author: Haydn Strauss
+//date: Jan 31, 2013
+
+
+//The Style Sheet for bubbl
+
+//-------------Define company colors-------------//
+
+$bubbl_light_red: #e74c3c;
+$bubbl_yellow: #f3d640;
+$bubbl_orange: #f4902e;
+$bubbl_secondary_light_blue: #bbdae8;
+$bubbl_secondary_dark_blue: #323a45;
+$bubbl_secondary_gray: #788f98;
+$bubbl_tertiary_red: #d53d2d;
+$bubbl_tertiary_yellow: #dec12c;
+$bubbl_tertiary_orange: #e47910;
+$bubbl_tertiary_light_blue: #7ea7b9;
+$bubbl_tertiary_dark_blue: #20262e;
+
+//-------------main sections-------------//
+body{
+
+
+}
+
+//------------- classes -----------------//
+
+
+
+// background videos
+
+.background_video{
+  position: fixed; right: 0; bottom: 0;
+  min-width: 100%; min-height: 100%;
+  width: auto; height: auto; z-index: -100;
+  background-size: cover;
+}
