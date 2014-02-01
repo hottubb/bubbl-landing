@@ -29,50 +29,32 @@
             s.parentNode.insertBefore(ga, s);
         })();
     </script>
+
+    <!--jquery-->
+	<script type="text/javascript" src="/js/vendor/jquery.min.js"></script>
+	<!-- parse -->
+	<script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.16.min.js"></script>
+	<!--script-->
+	<script type="text/javascript" src="/js/script-ck.js"></script>
+
 </head>
 <body>
 <h1>Join Bubbl Now </h1>
 
-<video poster="/videos/bubbl_image.png" id="background_video" autoplay>
-    <source src='/videos/bubbl_footage.mp4' type='video/mp4'/>
-    <source src='/videos/bubbl_footage.webm' type='video/webm'/>
-    <source src='/videos/bubbl_footage.ogv' type='video/ogg'/>
-    <p>Your browser doesn t support html5.</p>
-</video>
+  <script type="text/javascript">
+    Parse.initialize("Jk0WelF4bc67anKt8fvHQYUj25osYDlTsPoXAZzx", "9KwJ2hHLFVemLOMwlGoJgyNuGPJF0285gkp8FwBl");
 
-
-
-<!--jquery-->
-<script type="text/javascript" src="/js/vendor/jquery.min.js"></script>
-<!--script-->
-<script type="text/javascript" src="/js/script-ck.js"></script>
-<script>
-    $(function() {
-        $("#signup_beta").click(function() {
-            var bubblEmail ='email=' + $("input#inputEmail").val()+'&username=' + $("input#inputUsername").val();
-            $.ajax({
-                type: "POST",
-                url: "/add",
-                data: bubblEmail,
-                success: function(e) {
-                    $('#get_alerted_min').html("<div id='message'></div>");
-                    if (e.stat_code == 2){
-                        $('#message').html("<h4>You have already signed up for our beta.</h4>")
-                                .append("<p class='sub_message'>Your invite is coming soon.</p>");
-                    }
-                    else{
-                    $('#message').html("<h4>Thank you for registering for our beta!</h4>")
-                            .append("<p class='sub_message'>Confirm your email and we will be in touch soon.</p>")
-                            .hide()
-                            .fadeIn(1500, function() {
-                                $('#message').append("<div></div>");
-                            });
-                    }
-                }
-            });
-            return false;
-        });
+    
+    var TestObject = Parse.Object.extend("TestObject");
+    var testObject = new TestObject();
+      testObject.save({foo: "bar"}, {
+      success: function(object) {
+        $(".success").show();
+      },
+      error: function(model, error) {
+        $(".error").show();
+      }
     });
-</script>
+  </script>
 </body>
 </html>
