@@ -1,0 +1,1 @@
+function addUser(e,t){var n=Parse.Object.extend("PreRegUsers"),r=new Parse.Query(n);r.equalTo("username",e);r.find({success:function(r){if(r.length>0)console.log("user exists");else{var i=new n;i.save({username:e,email:t},{success:function(e){console.log("added user");$(".success").show()},error:function(e,t){$(".error").show()}})}},error:function(e){console.log("error")}})};

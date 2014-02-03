@@ -1,0 +1,89 @@
+body {
+  background-color: black;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
+#main_container {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 300px;
+  height: auto;
+  z-index: -999;
+  margin: 0 auto;
+  margin-top: 100px;
+  text-align: center;
+  display: block;
+  padding: 50px;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px; }
+  #main_container h1 {
+    font-weight: 100;
+    color: white;
+    font-size: 1.5em; }
+  #main_container #email_field {
+    margin-top: 30px;
+    width: 100%; }
+    #main_container #email_field input {
+      width: 100%;
+      font-size: 1.2em;
+      color: white;
+      text-align: center; }
+    #main_container #email_field input[type="email"] {
+      background: transparent;
+      border: none; }
+  #main_container #username_field {
+    width: 100%; }
+    #main_container #username_field input {
+      width: 100%;
+      font-size: 1.2em;
+      color: white;
+      text-align: center; }
+    #main_container #username_field input[type="text"] {
+      background: transparent;
+      border: none; }
+  #main_container #submit_field {
+    width: 100%;
+    text-align: center;
+    margin-top: 50px; }
+    #main_container #submit_field button {
+      -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 0 0;
+      -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 0 0;
+      box-shadow: rgba(0, 0, 0, 0.2) 0 1px 0 0;
+      color: #333;
+      background-color: white;
+      border: none;
+      font-family: 'Helvetica Neue',Arial,sans-serif;
+      font-size: 16px;
+      font-weight: 200;
+      height: 32px;
+      padding: 4px 16px; }
+
+.transparent_top {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -999; }
+
+#background_slider {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -1000;
+  overflow: hidden; }
+
+@-moz-document url-prefix() {
+  .background_video {
+    bottom: 0px;
+    right: 0px;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto; } }

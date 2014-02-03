@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Bubbl</title>
+    <meta name="description" content="bubbl">
+    <meta name="author" content="bubbl">
+    <meta name="keywords" content="clip, snip, flip, online videos, bubbl">
+    <meta name="generator" content="">
+
+    <!-- Mobile viewport optimized: h5bp.com/viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'REPLACEME']);
+        _gaq.push(['_setDomainName', 'REPLACEME']);
+        _gaq.push(['_trackPageview']);
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    <!--jquery-->
+    <script type="text/javascript" src="js/vendor/jquery.min.js"></script>
+    <!-- parse -->
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.16.min.js"></script>
+    <!--script-->
+    <script type="text/javascript" src="js/script.js"></script>
+</head>
+<body>
+
+
+<div id="main_container">
+    <h1>Reseve Your Bubbl Username</h1>
+
+    <div id="reserve_username_form">
+        <div id="email_field">
+            <input placeholder="your email" type="email" id="reserve_email">
+        </div>
+        <div id="username_field">
+            <input placeholder="your username" type="text" id="reserve_username">
+        </div>
+        <div id="submit_field">
+            <button id="reserve_submit">submit</button>
+        </div>
+    </div>
+
+</div>
+
+<!--<div class="transparent_top"></div>-->
+
+<div id="background_slider">
+    <div id="slidr-div" class="slider_class" style="dislay: block;">
+
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    Parse.initialize("Jk0WelF4bc67anKt8fvHQYUj25osYDlTsPoXAZzx", "9KwJ2hHLFVemLOMwlGoJgyNuGPJF0285gkp8FwBl");
+</script>
+<script>
+    $('#reserve_submit').click(function () {
+        var email = $("input#reserve_email").val();
+        var username = $("input#reserve_username").val();
+        addUser(username, email);
+    })
+</script>
+<!--Add Slider JS Library-->
+<script type="text/javascript" src="js/vendor/slidr.min.js"></script>
+<script>
+    $(document).ready(function(){
+        var num_vids = 5;
+        var data_slider_num = "one";
+        var video_num = "1";
+        var video_num_name = "";
+        var video_array = [];
+        video_array[0] = ["1", "one"]
+        video_array[1] = ["2", "two"]
+        video_array[2] = ["3", "three"]
+        video_array[3] = ["4", "four"]
+        video_array[4] = ["5", "five"]
+        video_array[5] = ["6", "six"]
+        video_array[6] = ["7", "seven"]
+        video_array[8] = ["9", "nine"]
+        video_array[9] = ["10", "ten"]
+        video_array[10] = ["11", "eleven"]
+        video_array[11] = ["12", "twelve"]
+        video_array[12] = ["13", "thirteen"]
+        video_array[13] = ["14", "fourteen"]
+        video_array[14] = ["15", "fifteen"]
+        video_array[15] = ["16", "sixteen"]
+        video_array[16] = ["17", "seventeen"]
+        video_array[17] = ["18", "two"]
+        video_array[18] = ["19", "three"]
+        video_array[19] = ["20", "four"]
+        video_array[20] = ["21", "five"]
+        video_array[21] = ["22", "six"]
+        video_array[22] = ["23", "seven"]
+        video_array[23] = ["24", "eight"]
+        video_array[24] = ["25", "nine"]
+        video_array[25] = ["26", "ten"]
+        video_array[26] = ["27", "eleven"]
+        video_array[27] = ["28", "twelve"]
+        video_array[28] = ["29", "thirteen"]
+        video_array[29] = ["30", "fourteen"]
+        video_array[30] = ["31", "fifteen"]
+        video_array[31] = ["32", "sixteen"]
+        video_array[32] = ["33", "one"]
+        video_array[34] = ["35", "three"]
+        video_array[35] = ["36", "four"]
+        video_array[36] = ["37", "five"]
+        video_array[37] = ["38", "six"]
+        video_array[38] = ["39", "seven"]
+        video_array[40] = ["41", "nine"]
+        video_array[41] = ["42", "ten"]
+        video_array[42] = ["43", "eleven"]
+        video_array[43] = ["44", "twelve"]
+        video_array[44] = ["45", "thirteen"]
+        video_array[45] = ["46", "fourteen"]
+        video_array[47] = ["48", "sixteen"]
+        video_array[50] = ["41", "seven"]
+        video_array[51] = ["52", "eight"]
+        video_array[52] = ["53", "nine"]
+        video_array[53] = ["54", "ten"]
+
+
+        for (var i=0; i<5; i++){
+            var video = video_array[Math.floor(Math.random()*video_array.length)];
+            console.log(video);
+
+            if(i==0){
+                data_slider_num = 'one';
+            }
+            else if(i===1){
+                data_slider_num = 'two';
+            }
+            else if(i===2){
+                data_slider_num = 'three';
+            }
+            else if(i===3){
+                data_slider_num = 'four';
+            }
+            else if(i===4){
+                data_slider_num = 'five';
+            }
+            $('.slider_class').append('<div data-slidr="'+data_slider_num+'" ><video poster="videos/bubbl_image.png" class="background_video" id="video_'+data_slider_num+'" loop><source src="videos/bubbl_b/ba'+video[0]+'.mp4" type="video/mp4"/><source src="videos/bubbl_b/ba'+video[0]+'.webm" type="video/webm"/><p>Your browser doesnt support html5.</p> </div>')
+            if(i==0){
+                data_slider_num = 'one';
+                $('#video_'+ data_slider_num).get(0).play();
+            }
+        };
+
+
+        slidr.create('slidr-div', {
+            after: function(e) { $('#video_'+ e.in.slidr).get(0).play(); },
+            before: function(e) { $('#video_'+ e.out.slidr).get(0).pause();},
+            breadcrumbs: false,
+            controls: 'corner',
+            direction: 'horizontal',
+            fade: true,
+            keyboard: true,
+            overflow: false,
+            touch: true,
+            transition: 'linear'
+        }).start();
+    })
+</script>
+
+</body>
+</html>
