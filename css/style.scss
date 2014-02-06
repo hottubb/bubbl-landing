@@ -20,19 +20,13 @@ $bubbl_tertiary_dark_blue: #20262e;
 
 //-------------main sections-------------//
 body{
-<<<<<<< HEAD
-
-=======
   background-color: black;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
->>>>>>> master
 
 }
 
 //------------- classes -----------------//
 
-<<<<<<< HEAD
-=======
 #main_container{
   background-color:rgba(0,0,0,0.5);
   width: 300px;
@@ -102,18 +96,10 @@ body{
     }
   }
 }
->>>>>>> master
 
 
 // background videos
 
-<<<<<<< HEAD
-.background_video{
-  position: fixed; right: 0; bottom: 0;
-  min-width: 100%; min-height: 100%;
-  width: auto; height: auto; z-index: -100;
-  background-size: cover;
-=======
 
 
 .transparent_top{
@@ -145,5 +131,4 @@ body{
     width: auto;
     height: auto;
   }
->>>>>>> master
 }
