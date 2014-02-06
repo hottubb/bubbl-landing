@@ -12,8 +12,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="/favicon.ico">
 
+    <!--Fonts-->
+
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script>
+        var Environment = {
+            //mobile or desktop compatible event name, to be used with '.on' function
+            TOUCH_DOWN_EVENT_NAME: 'mousedown touchstart',
+            TOUCH_UP_EVENT_NAME: 'mouseup touchend',
+            TOUCH_MOVE_EVENT_NAME: 'mousemove touchmove',
+            TOUCH_DOUBLE_TAB_EVENT_NAME: 'dblclick dbltap',
+
+            isAndroid: function() {
+                return navigator.userAgent.match(/Android/i);
+            },
+            isBlackBerry: function() {
+                return navigator.userAgent.match(/BlackBerry/i);
+            },
+            isIOS: function() {
+                return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+            },
+            isOpera: function() {
+                return navigator.userAgent.match(/Opera Mini/i);
+            },
+            isWindows: function() {
+                return navigator.userAgent.match(/IEMobile/i);
+            },
+            isMobile: function() {
+                return (Environment.isAndroid() || Environment.isBlackBerry() || Environment.isIOS() || Environment.isOpera() || Environment.isWindows());
+            }
+        };
+
+        if(Environment.isMobile()){
+            window.location = "/mobile";
+        }
+    </script>
+
 
     <script type="text/javascript">
         var _gaq = _gaq || [];
@@ -39,21 +76,38 @@
 </head>
 <body>
 
-
+<div id="header_content">
+    <div id="logo_zone">
+        <img id="main_logo" src="img/bubbl_logo.png">
+    </div>
+    <div id="contact_zone">
+        <a id="blog_link" href="http://bubbl-me.tumblr.com" target="_blank">BLOG</a>/
+        <a id="contact_link" href="mailto:info@bubbl.me">CONTACT</a>
+    </div>
+</div>
 <div id="main_container">
-    <h1>Reseve Your Bubbl Username</h1>
+
+    <h1>Get your spot today</h1>
 
     <div id="reserve_username_form">
         <div id="email_field">
-            <input placeholder="your email" type="email" id="reserve_email">
+            <input placeholder="ENTER YOUR EMAIL" type="email" id="reserve_email">
         </div>
-        <div id="username_field">
-            <input placeholder="your username" type="text" id="reserve_username">
+        <div id="username_field" class="input_field">
+            <input placeholder="ENTER YOUR USERNAME" type="text" id="reserve_username">
         </div>
-        <div id="submit_field">
-            <button id="reserve_submit">submit</button>
+        <div id="submit_field" class="input_field">
+            <button id="reserve_submit">RESERVE</button>
         </div>
     </div>
+    <div class="success">
+        <h4>Thank you, your username has been successfully reserved.</h4>
+    </div>
+    <div class="error">
+        <h4 id="error">That username has already been claimed.</h4>
+    </div>
+    <h4>CLIP  /  SNIP  /  SHARE</h4>
+    <h5>Spring, 2014 in the Apple Store</h5>
 
 </div>
 
@@ -76,8 +130,17 @@
         addUser(username, email);
     })
 </script>
+<script>
+    $( "#username_field" ).on('input', function() {
+        var username = $("input#reserve_username").val();
+        console.log(username);
+        var existence = userExists($("input#reserve_username").val());
+        console.log(existence);
+    });
+</script>
 <!--Add Slider JS Library-->
 <script type="text/javascript" src="js/vendor/slidr.min.js"></script>
+
 <script>
     $(document).ready(function(){
         var num_vids = 5;
@@ -85,6 +148,8 @@
         var video_num = "1";
         var video_num_name = "";
         var video_array = [];
+        var video;
+
         video_array[0] = ["1", "one"]
         video_array[1] = ["2", "two"]
         video_array[2] = ["3", "three"]
@@ -136,8 +201,8 @@
 
 
         for (var i=0; i<5; i++){
-            var video = video_array[Math.floor(Math.random()*video_array.length)];
-            console.log(video);
+            video = video_array[Math.floor(Math.random()*video_array.length)];
+
 
             if(i==0){
                 data_slider_num = 'one';
@@ -154,7 +219,10 @@
             else if(i===4){
                 data_slider_num = 'five';
             }
-            $('.slider_class').append('<div data-slidr="'+data_slider_num+'" ><video poster="videos/bubbl_image.png" class="background_video" id="video_'+data_slider_num+'" loop><source src="videos/bubbl_b/ba'+video[0]+'.mp4" type="video/mp4"/><source src="videos/bubbl_b/ba'+video[0]+'.webm" type="video/webm"/><p>Your browser doesnt support html5.</p> </div>')
+            if(! video){
+                video = video_array[4];
+            }
+            $('.slider_class').append('<div data-slidr="'+data_slider_num+'" ><video  class="background_video" id="video_'+data_slider_num+'" loop><source src="videos/bubbl_b/ba'+video[0]+'.mp4" type="video/mp4"/><source src="videos/bubbl_b/ba'+video[0]+'.webm" type="video/webm"/><p>Your browser doesnt support html5.</p> </div>')
             if(i==0){
                 data_slider_num = 'one';
                 $('#video_'+ data_slider_num).get(0).play();
