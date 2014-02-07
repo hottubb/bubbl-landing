@@ -129,6 +129,12 @@
 
 <script type="text/javascript">
     Parse.initialize("Jk0WelF4bc67anKt8fvHQYUj25osYDlTsPoXAZzx", "9KwJ2hHLFVemLOMwlGoJgyNuGPJF0285gkp8FwBl");
+    var landingPageLogUser = {
+        // Define ranges to bucket data points into meaningful segments
+        device: 'desktop'
+    };
+    // Send the dimensions to Parse along with the 'search' event
+    Parse.Analytics.track('landingPageOpens', landingPageLogUser)
 </script>
 <script>
     $('#reserve_submit').click(function () {

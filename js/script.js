@@ -1,4 +1,7 @@
 function addUser(username, email){
+    var userAdded = {};
+    // Send the dimensions to Parse along with the 'search' event
+
     $("#error").hide();
     $(".spinner").show();
     var UserObject = Parse.Object.extend("PreRegUsers");
@@ -10,11 +13,13 @@ function addUser(username, email){
             if (results.length > 0){
                 $(".spinner").hide();
                 $("#error").show();
+                userAdded['status'] = "user exists";
             }
             else{
                 var userObject = new UserObject();
                 userObject.save({username: username, email: email}, {
                     success: function(object) {
+                        userAdded['status'] = "user added";
                         $("#reserve_username_form").hide();
                         $(".spinner").hide();
                         $(".success").fadeIn();
@@ -27,10 +32,12 @@ function addUser(username, email){
             }
         },
         error: function(error) {
+            userAdded['status'] = "error";
             console.log('error')
 
         }
     });
+    Parse.Analytics.track('signups', userAdded)
 }
 
 
