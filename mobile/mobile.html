@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Bubbl</title>
+    <meta name="description" content="bubbl">
+    <meta name="author" content="bubbl">
+    <meta name="keywords" content="clip, snip, flip, online videos, bubbl">
+    <meta name="generator" content="">
+
+    <!-- Mobile viewport optimized: h5bp.com/viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'REPLACEME']);
+        _gaq.push(['_setDomainName', 'REPLACEME']);
+        _gaq.push(['_trackPageview']);
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    <!--jquery-->
+    <script type="text/javascript" src="../js/vendor/jquery.min.js"></script>
+    <!-- parse -->
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.16.min.js"></script>
+    <!--script-->
+    <script type="text/javascript" src="../js/script.js"></script>
+</head>
+<body>
+<div id="mobile_header_content">
+    <div id="logo_zone">
+        <img id="main_logo" src="../img/bubbl_logo.png">
+    </div>
+    <div id="contact_zone">
+        <a id="blog_link" href="http://bubbl-me.tumblr.com" target="_blank">BLOG</a>/
+        <a id="contact_link" href="mailto:info@bubbl.me">CONTACT</a>
+    </div>
+</div>
+
+<div id="mobile_main_container">
+    <div id="reserve_username_form">
+        <div id="email_field">
+            <input placeholder="ENTER YOUR EMAIL" type="email" id="reserve_email">
+        </div>
+        <div id="username_field" class="input_field">
+            <input placeholder="ENTER YOUR USERNAME" type="text" id="reserve_username">
+        </div>
+        <div id="submit_field" class="input_field">
+            <button id="reserve_submit">RESERVE</button>
+        </div>
+        <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+        </div>
+    </div>
+    <div class="success">
+        <h4>Thank you, your username has been successfully reserved.</h4>
+    </div>
+    <div class="error">
+        <h4 id="error">That username has already been claimed.</h4>
+    </div>
+    <h4>CLIP  /  SNIP  /  SHARE</h4>
+    <h5>Spring, 2014 in the Apple Store</h5>
+</div>
+
+
+<script type="text/javascript">
+    Parse.initialize("Jk0WelF4bc67anKt8fvHQYUj25osYDlTsPoXAZzx", "9KwJ2hHLFVemLOMwlGoJgyNuGPJF0285gkp8FwBl");
+</script>
+
+<script>
+    $('#reserve_submit').click(function () {
+        var email = $("input#reserve_email").val();
+        var username = $("input#reserve_username").val();
+        addUser(username, email);
+    })
+</script>
+
+</body>
+</html>

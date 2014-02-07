@@ -1,4 +1,6 @@
 function addUser(username, email){
+    $("#error").hide();
+    $(".spinner").show();
     var UserObject = Parse.Object.extend("PreRegUsers");
 
     var query = new Parse.Query(UserObject);
@@ -6,6 +8,7 @@ function addUser(username, email){
     query.find({
         success: function(results) {
             if (results.length > 0){
+                $(".spinner").hide();
                 $("#error").show();
             }
             else{
@@ -13,9 +16,11 @@ function addUser(username, email){
                 userObject.save({username: username, email: email}, {
                     success: function(object) {
                         $("#reserve_username_form").hide();
+                        $(".spinner").hide();
                         $(".success").fadeIn();
                     },
                     error: function(model, error) {
+                        $(".spinner").hide();
                         $("#error").show();
                     }
                 });

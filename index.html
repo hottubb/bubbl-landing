@@ -47,7 +47,7 @@
         };
 
         if(Environment.isMobile()){
-            window.location = "/mobile";
+            window.location = "mobile/mobile.html";
         }
     </script>
 
@@ -99,6 +99,13 @@
         <div id="submit_field" class="input_field">
             <button id="reserve_submit">RESERVE</button>
         </div>
+        <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+        </div>
     </div>
     <div class="success">
         <h4>Thank you, your username has been successfully reserved.</h4>
@@ -130,14 +137,7 @@
         addUser(username, email);
     })
 </script>
-<script>
-    $( "#username_field" ).on('input', function() {
-        var username = $("input#reserve_username").val();
-        console.log(username);
-        var existence = userExists($("input#reserve_username").val());
-        console.log(existence);
-    });
-</script>
+
 <!--Add Slider JS Library-->
 <script type="text/javascript" src="js/vendor/slidr.min.js"></script>
 
@@ -222,7 +222,7 @@
             if(! video){
                 video = video_array[4];
             }
-            $('.slider_class').append('<div data-slidr="'+data_slider_num+'" ><video  class="background_video" id="video_'+data_slider_num+'" loop><source src="videos/bubbl_b/ba'+video[0]+'.mp4" type="video/mp4"/><source src="videos/bubbl_b/ba'+video[0]+'.webm" type="video/webm"/><p>Your browser doesnt support html5.</p> </div>')
+            $('.slider_class').append('<div data-slidr="'+data_slider_num+'" ><video  class="background_video" id="video_'+data_slider_num+'" loop><source src="videos/bubbl_b/ba'+video[0]+'.webm" type="video/webm"/><source src="videos/bubbl_b/ba'+video[0]+'.mp4" type="video/mp4"/><p>Your browser doesnt support html5.</p> </div>')
             if(i==0){
                 data_slider_num = 'one';
                 $('#video_'+ data_slider_num).get(0).play();
