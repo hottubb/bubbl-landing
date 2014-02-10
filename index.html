@@ -73,8 +73,16 @@
     <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.16.min.js"></script>
     <!--script-->
     <script type="text/javascript" src="js/script.js"></script>
+    <script src="js/modernizr.custom.js"></script>
 </head>
 <body>
+
+<!-- open/close -->
+<div class="overlay overlay-slidedown">
+    <button type="button" class="overlay-close">Close</button>
+    <div id="youtube_overlay" class="videoWrapper"></div>
+</div>
+
 
 <div id="header_content">
     <div id="logo_zone">
@@ -84,10 +92,13 @@
         <a id="blog_link" href="http://bubbl-me.tumblr.com" target="_blank">BLOG</a>/
         <a id="contact_link" href="mailto:info@bubbl.me">CONTACT</a>
     </div>
+    <div class="full_content_container" id="trigger-overlay">
+        <img id="full_content_image" src="img/splash_icons/full_content_40.png" alt="View Full Video">
+    </div>
 </div>
 <div id="main_container">
 
-    <h1>Get your spot today</h1>
+    <h1 id="header_text">Get your spot today</h1>
 
     <div id="reserve_username_form">
         <div id="email_field">
@@ -156,53 +167,54 @@
         var video_array = [];
         var video;
 
-        video_array[0] = ["1", "one"]
-        video_array[1] = ["2", "two"]
-        video_array[2] = ["3", "three"]
-        video_array[3] = ["4", "four"]
-        video_array[4] = ["5", "five"]
-        video_array[5] = ["6", "six"]
-        video_array[6] = ["7", "seven"]
-        video_array[8] = ["9", "nine"]
-        video_array[9] = ["10", "ten"]
-        video_array[10] = ["11", "eleven"]
-        video_array[11] = ["12", "twelve"]
-        video_array[12] = ["13", "thirteen"]
-        video_array[13] = ["14", "fourteen"]
-        video_array[14] = ["15", "fifteen"]
-        video_array[15] = ["16", "sixteen"]
-        video_array[16] = ["17", "seventeen"]
-        video_array[17] = ["18", "two"]
-        video_array[18] = ["19", "three"]
-        video_array[19] = ["20", "four"]
-        video_array[20] = ["21", "five"]
-        video_array[21] = ["22", "six"]
-        video_array[22] = ["23", "seven"]
-        video_array[23] = ["24", "eight"]
-        video_array[24] = ["25", "nine"]
-        video_array[25] = ["26", "ten"]
-        video_array[26] = ["27", "eleven"]
-        video_array[27] = ["28", "twelve"]
-        video_array[28] = ["29", "thirteen"]
-        video_array[29] = ["30", "fourteen"]
-        video_array[30] = ["31", "fifteen"]
-        video_array[31] = ["32", "sixteen"]
-        video_array[32] = ["33", "one"]
-        video_array[33] = ["35", "three"]
-        video_array[34] = ["36", "four"]
-        video_array[35] = ["37", "five"]
-        video_array[36] = ["38", "six"]
-        video_array[37] = ["39", "seven"]
-        video_array[38] = ["41", "nine"]
-        video_array[39] = ["42", "ten"]
-        video_array[40] = ["43", "eleven"]
-        video_array[41] = ["44", "twelve"]
+        video_array[0] = ["1", "one", "http://www.youtube.com/embed/1EDMyYZGmqU"]
+        video_array[1] = ["2", "two", "http://www.youtube.com/embed/VKG4Tgvvd_E"]
+        video_array[2] = ["3", "three", "http://www.youtube.com/embed/iOeIFFGFkrA"]
+        video_array[3] = ["4", "four", "http://www.youtube.com/embed/A-T6FSdoB3Q"]
+        video_array[4] = ["5", "five", "http://www.youtube.com/embed/7Me3LO-3JEs"]
+        video_array[5] = ["6", "six", "http://www.youtube.com/embed/-K6vaxOQFsw"]
+        video_array[6] = ["7", "seven", "http://www.youtube.com/embed/dQYG0KtBivQ"]
+        video_array[8] = ["9", "nine", "http://www.youtube.com/embed/STc6yT0dr0U"]
+        video_array[9] = ["10", "ten", "http://www.youtube.com/embed/ke-9-w_zw08"]
+        video_array[10] = ["11", "eleven", "http://www.youtube.com/embed/85LnuVpzK3o"]
+        video_array[11] = ["12", "twelve", "http://www.youtube.com/embed/hIG992erHAY"]
+        video_array[12] = ["13", "thirteen", "http://www.youtube.com/embed/NHKTQcDfv9A"]
+        video_array[13] = ["14", "fourteen", "http://www.youtube.com/embed/wXiTwalPvuQ"]
+        video_array[14] = ["15", "fifteen", "http://www.youtube.com/embed/wVcJLtRGEOc"]
+        video_array[15] = ["16", "sixteen", "http://www.youtube.com/embed/yMuuc_pqx2s"]
+        video_array[16] = ["17", "seventeen", "http://www.youtube.com/embed/ghHx8rBQaU8"]
+        video_array[17] = ["18", "two", "http://www.youtube.com/embed/dwGO-wwKSjg"]
+        video_array[18] = ["19", "three", "http://www.youtube.com/embed/oNdgg6WzdoY#t=57"]
+        video_array[19] = ["20", "four", "http://www.youtube.com/embed/q5dpbV6GklE"]
+        video_array[20] = ["21", "five", "http://www.youtube.com/embed/5WUjZ-qj4aw"]
+        video_array[21] = ["22", "six", "http://www.youtube.com/embed/pdYIGcv5rYE"]
+        video_array[22] = ["23", "seven", "http://www.youtube.com/embed/VIJ3h39mNmw"]
+        video_array[23] = ["24", "eight", "http://www.youtube.com/embed/uNcfCA9UsDQ"]
+        video_array[24] = ["25", "nine", "http://www.youtube.com/embed/JRWox-i6aAk"]
+        video_array[25] = ["26", "ten", "http://www.youtube.com/embed/LMQc8cqgvzw"]
+        video_array[26] = ["27", "eleven", "http://www.youtube.com/embed/i0A3-wc0rpw"]
+        video_array[27] = ["28", "twelve", "http://www.youtube.com/embed/A_asfZhfTBk"]
+        video_array[28] = ["29", "thirteen", "http://www.youtube.com/embed/Do1xw0hMdcs"]
+        video_array[29] = ["30", "fourteen", "http://www.youtube.com/embed/Q3VjaCy5gck"]
+        video_array[30] = ["31", "fifteen", "http://www.youtube.com/embed/rEamE0MYPkg"]
+        video_array[31] = ["32", "sixteen", "http://www.youtube.com/embed/-zzP29emgpg"]
+        video_array[32] = ["33", "one", "http://www.youtube.com/embed/JtH68PJIQLE"]
+        video_array[33] = ["35", "three", "http://www.youtube.com/embed/jDj44n5bjWU"]
+        video_array[34] = ["36", "four", "http://www.youtube.com/embed/bB2NBwGUAZU"]
+        video_array[35] = ["37", "five", "http://www.youtube.com/embed/ZBCOMG2F2Zk"]
+        video_array[36] = ["38", "six", "http://www.youtube.com/embed/kh29_SERH0Y"]
+        video_array[37] = ["39", "seven", "http://www.youtube.com/embed/Spq-K1J0yk8"]
+        video_array[38] = ["41", "nine", "http://www.youtube.com/embed/s7ozUhhvitg"]
+        video_array[39] = ["42", "ten", "http://www.youtube.com/embed/m4Bm3cs9TFo"]
+        video_array[40] = ["43", "eleven", "http://www.youtube.com/embed/YQIMGV5vtd4"]
+        video_array[41] = ["44", "twelve", "http://www.youtube.com/embed/dtVQJCq2cCM"]
 //        video_array[44] = ["45", "thirteen"]  GWAR VIDEO
-        video_array[42] = ["46", "fourteen"]
-        video_array[43] = ["48", "sixteen"]
-        video_array[44] = ["52", "eight"]
-        video_array[45] = ["53", "nine"]
-        video_array[46] = ["54", "ten"]
+        video_array[42] = ["46", "fourteen", "http://www.youtube.com/embed/6v2L2UGZJAM"]
+        video_array[43] = ["48", "sixteen", "http://www.youtube.com/embed/pXSGocWifAg"]
+        video_array[44] = ["51", "sixteen", "http://www.youtube.com/embed/AzoIJlQD06E"]
+        video_array[45] = ["52", "eight", "http://www.youtube.com/embed/gHxi-HSgNPc"]
+        video_array[46] = ["53", "nine", "http://www.youtube.com/embed/uu_zwdmz0hE"]
+        video_array[47] = ["54", "ten", "https://www.youtube.com/embed/gGmfOsdla2Y"]
 
 
         for (var i=0; i<num_vids; i++){
@@ -227,16 +239,17 @@
             if(! video){
                 video = video_array[4];
             }
-            $('.slider_class').append('<div data-slidr="'+data_slider_num+'" ><video  class="background_video" id="video_'+data_slider_num+'" loop><source src="videos/bubbl_b/ba'+video[0]+'.webm" type="video/webm"/><source src="videos/bubbl_b/ba'+video[0]+'.mp4" type="video/mp4"/><p>Your browser doesnt support html5.</p> </div>')
+            $('.slider_class').append('<div data-slidr="'+data_slider_num+'" ><video  class="background_video" id="video_'+data_slider_num+'" data-videourl = "'+video[2]+'" loop><source src="videos/bubbl_b/ba'+video[0]+'.webm" type="video/webm"/><source src="videos/bubbl_b/ba'+video[0]+'.mp4" type="video/mp4"/><p>Your browser doesnt support html5.</p> </div>')
             if(i==0){
                 data_slider_num = 'one';
                 $('#video_'+ data_slider_num).get(0).play();
+                var current_bubbl_landing_page =  0;
             }
         };
 
 
         slidr.create('slidr-div', {
-            after: function(e) { $('#video_'+ e.in.slidr).get(0).play(); },
+            after: function(e) { $('#video_'+ e.in.slidr).get(0).play(); bubblLanding.current_bubbl_landing_page =  e.in.slidr;},
             before: function(e) { $('#video_'+ e.out.slidr).get(0).pause();},
             breadcrumbs: false,
             controls: 'corner',
@@ -249,6 +262,10 @@
         }).start();
     })
 </script>
+
+
+<script src="js/classie.js"></script>
+<script src="js/demo1.js"></script>
 
 </body>
 </html>

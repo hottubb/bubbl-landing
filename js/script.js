@@ -1,3 +1,9 @@
+//Define Bubbl Namespace
+var bubblLanding = {}
+
+//Set initial video
+bubblLanding.current_bubbl_landing_page = "one";
+
 function addUser(username, email){
     var userAdded = {};
     // Send the dimensions to Parse along with the 'search' event
@@ -38,26 +44,4 @@ function addUser(username, email){
         }
     });
     Parse.Analytics.track('signups', userAdded)
-}
-
-
-function userExists(username){
-    var UserObject = Parse.Object.extend("PreRegUsers");
-
-    var query = new Parse.Query(UserObject);
-    query.equalTo("username", username);
-    query.find({
-        success: function(results) {
-            if (results.length > 0){
-                return "test"
-            }
-            else{
-                return "test1"
-            }
-        },
-        error: function(error) {
-            console.log('error')
-
-        }
-    });
 }
