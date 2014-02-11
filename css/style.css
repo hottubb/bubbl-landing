@@ -25,6 +25,10 @@ body {
   font-size: .8em;
   color: #00ffbb;
   text-decoration: none; }
+#header_content a:visited {
+  font-size: .8em;
+  color: #00ffbb;
+  text-decoration: none; }
 #header_content #blog_link {
   padding-right: 10px;
   font-size: .8em; }
