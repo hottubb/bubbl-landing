@@ -50,7 +50,7 @@ body{
 
 #header_content{
   #logo_zone{
-    width: 75%;
+    width: 70%;
     float: left;
     padding-top: 15px;
     padding-left: 15px;
@@ -82,12 +82,24 @@ body{
     width: 30px;
     padding-top: 42px;
     margin-left: 30px;
+    margin-right: 30px;
+    float: left;
   }
+  #mute_video{
+    padding-top: 39px;
+    img{
+      width: 35px;
+    }
+
+  }
+
+
 }
+
 
 #main_container{
 //  background-color:rgba(0,0,0,0.5);
-  width: 30%;
+  width: 35%;
   height: auto;
   z-index: -999;
   margin-top: 100px;
@@ -160,6 +172,58 @@ body{
     }
   }
   #submit_field{
+    width: 100%;
+    margin-top: 10px;
+
+    button{
+      -webkit-box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
+      -moz-box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
+      box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
+      color:$bubbl_gray;
+      background-color:$bubbl_red;
+      border:none;
+      font-size:16px;
+      font-weight:400;
+      height:48px;
+      padding:4px 36px;
+    }
+  }
+  .twitter{
+    float: left;
+    margin-right: 10%;
+    margin-left: 30%;
+  }
+  #social_share{
+    display: none;
+  }
+  .url_success{
+    display: none;
+  }
+  #submit_video{
+    margin-top: 100px;
+    display: none;
+  }
+
+  #video_url{
+    margin-top: 30px;
+    margin-bottom: 12px;
+    width: 100%;
+    input{
+      width: 100%;
+      font-size: 0.8em;
+      color: white;
+    }
+    input[type="text"]
+    {
+      background: transparent;
+      border: 4px solid rgba(255, 255, 255, .3);
+      padding: 15px 0px 15px 20px;
+
+    }
+
+  }
+
+  #submit_video_field{
     width: 100%;
     margin-top: 10px;
 
@@ -281,6 +345,10 @@ body{
   }
   .success{
     display: none;
+    h4{
+    margin-bottom: 30px;
+    margin-top: 30px;
+    }
   }
   #error{
     color:$bubbl_red;
@@ -319,6 +387,7 @@ body{
     }
   }
 }
+
 
 
 // background videos

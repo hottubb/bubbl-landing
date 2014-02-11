@@ -25,10 +25,14 @@ function addUser(username, email){
                 var userObject = new UserObject();
                 userObject.save({username: username, email: email}, {
                     success: function(object) {
+                        bubblLanding.email = email;
                         userAdded['status'] = "user added";
                         $("#reserve_username_form").hide();
                         $(".spinner").hide();
+                        $("#header_text").hide();
                         $(".success").fadeIn();
+                        $("#social_share").fadeIn();
+                        $("#submit_video").fadeIn();
                     },
                     error: function(model, error) {
                         $(".spinner").hide();
@@ -44,4 +48,23 @@ function addUser(username, email){
         }
     });
     Parse.Analytics.track('signups', userAdded)
+}
+
+function addURL(url){
+    var userAdded = {};
+    // Send the dimensions to Parse along with the 'search' event
+
+    var UserObject = Parse.Object.extend("LandingVidsSubmitted");
+
+    var userObject = new UserObject();
+    userObject.save({url: url, email: bubblLanding.email}, {
+        success: function(object) {
+            $("#submit_video").hide();
+            $(".url_success").fadeIn();
+        },
+        error: function(model, error) {
+            $(".spinner").hide();
+            $("#error").show();
+        }
+    });
 }

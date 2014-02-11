@@ -10,7 +10,7 @@
 
     <!-- Mobile viewport optimized: h5bp.com/viewport -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="shortcut icon" href="favicon.ico">
 
     <!--Fonts-->
 
@@ -76,6 +76,14 @@
     <script src="js/modernizr.custom.js"></script>
 </head>
 <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/all.js#xfbml=1&appId=1403301609884244";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 <!-- open/close -->
 <div class="overlay overlay-slidedown">
@@ -94,6 +102,9 @@
     </div>
     <div class="full_content_container" id="trigger-overlay">
         <img id="full_content_image" src="img/splash_icons/full_content_40.png" alt="View Full Video">
+    </div>
+    <div class="mute_container" id="mute_video">
+        <img id="mute_image" src="img/audio_on.png" alt="Mute Audio">
     </div>
 </div>
 <div id="main_container">
@@ -118,9 +129,31 @@
             <div class="rect5"></div>
         </div>
     </div>
-    <div class="success">
-        <h4>Thank you, your username has been successfully reserved.</h4>
+    <div class="success" style="margin-bottom: 50px;">
+        <h4>Thank you, your username has been successfully reserved. Tell your friends!</h4>
     </div>
+    <div id="social_share">
+        <div class="twitter" >
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.bubbl.me" data-count="none" data-text="I just reserved my username at Bubbl! You should too.">Tweet</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        </div>
+        <div class="facebook">
+            <div class="fb-share-button" data-href="http://www.bubbl.me" data-type="button"></div>
+        </div>
+    </div>
+    <div id="submit_video">
+        <h4>Add your own video to this page. Enter a URL:</h4>
+        <div id="video_url">
+            <input placeholder="ENTER VIDEO URL" type="text" id="video_url_input">
+        </div>
+        <div id="submit_video_field" class="input_field">
+            <button id="submit_video_button">SUBMIT</button>
+        </div>
+    </div>
+    <div class="url_success">
+        <h4>Thank you for adding a video, we will let you know when it's live.</h4>
+    </div>
+
     <div class="error">
         <h4 id="error">That username has already been claimed.</h4>
     </div>
@@ -152,6 +185,26 @@
         var email = $("input#reserve_email").val();
         var username = $("input#reserve_username").val();
         addUser(username, email);
+    })
+</script>
+<script>
+    $('#submit_video_button').click(function () {
+        var url= $("input#video_url_input").val();
+        addURL(url);
+
+    })
+</script>
+<script>
+    $('#mute_video').click(function () {
+        if($("video").prop('muted')) {
+            $('#mute_image').attr("src", "img/audio_on.png");
+            $("video").prop('muted', false);
+        }
+        else{
+            $('#mute_image').attr("src", "img/audio_off.png");
+            $("video").prop('muted', true);
+        }
+
     })
 </script>
 
@@ -216,9 +269,25 @@
         video_array[46] = ["53", "nine", "http://www.youtube.com/embed/uu_zwdmz0hE"]
         video_array[47] = ["54", "ten", "https://www.youtube.com/embed/gGmfOsdla2Y"]
 
+        var current_vid_array = [];
 
         for (var i=0; i<num_vids; i++){
-            video = video_array[Math.floor(Math.random()*video_array.length)];
+            var random_number = Math.floor(Math.random()*video_array.length);
+
+            if ($.inArray(random_number, current_vid_array) !== -1){
+                console.log(random_number);
+                random_number = Math.floor(Math.random()*video_array.length);
+                if ($.inArray(random_number, current_vid_array) !== -1){
+                    console.log(random_number);
+                    random_number = Math.floor(Math.random()*video_array.length);
+                    if ($.inArray(random_number, current_vid_array) !== -1){
+                        random_number=47
+                    }
+                }
+            }
+            video = video_array[random_number];
+
+            current_vid_array.push(random_number);
 
 
             if(i==0){
