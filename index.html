@@ -213,7 +213,7 @@
 
 <script>
     $(document).ready(function(){
-        var num_vids = 3;
+        var num_vids = 4;
         var data_slider_num = "one";
         var video_num = "1";
         var video_num_name = "";
@@ -318,8 +318,39 @@
 
 
         slidr.create('slidr-div', {
-            after: function(e) { $('#video_'+ e.in.slidr).get(0).play(); bubblLanding.current_bubbl_landing_page =  e.in.slidr;},
-            before: function(e) { $('#video_'+ e.out.slidr).get(0).pause();},
+            after: function(e) {
+
+            },
+            before: function(e) {
+
+                console.log(e.in.slidr)
+                if  (e.in.slidr == "one"){
+                    $('#video_two').get(0).pause();
+                    $('#video_three').get(0).pause();
+                    $('#video_four').get(0).pause();
+                    $('#video_'+ e.in.slidr).get(0).play();
+                }
+                else if  (e.in.slidr == "two"){
+                    $('#video_one').get(0).pause();
+                    $('#video_three').get(0).pause();
+                    $('#video_four').get(0).pause();
+                    $('#video_'+ e.in.slidr).get(0).play();
+                }
+                else if  (e.in.slidr == "three"){
+                    $('#video_two').get(0).pause();
+                    $('#video_one').get(0).pause();
+                    $('#video_four').get(0).pause();
+                    $('#video_'+ e.in.slidr).get(0).play();
+                }
+                else if  (e.in.slidr == "four"){
+
+                    $('#video_one').get(0).pause();
+                    $('#video_two').get(0).pause();
+                    $('#video_three').get(0).pause();
+                    $('#video_'+ e.in.slidr).get(0).play();
+                }
+                bubblLanding.current_bubbl_landing_page =  e.in.slidr;
+            },
             breadcrumbs: false,
             controls: 'corner',
             direction: 'horizontal',
