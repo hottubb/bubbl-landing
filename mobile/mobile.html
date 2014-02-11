@@ -71,6 +71,27 @@
     <div class="success">
         <h4>Thank you, your username has been successfully reserved.</h4>
     </div>
+    <div id="social_share">
+        <div class="twitter" >
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.bubbl.me" data-count="none" data-text="I just reserved my username at Bubbl! You should too.">Tweet</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        </div>
+        <div class="facebook">
+            <div class="fb-share-button" data-href="http://www.bubbl.me" data-type="button"></div>
+        </div>
+    </div>
+    <div id="submit_video">
+        <h4>Add your own video to this page. Enter a URL:</h4>
+        <div id="video_url">
+            <input placeholder="ENTER VIDEO URL" type="text" id="video_url_input">
+        </div>
+        <div id="submit_video_field" class="input_field">
+            <button id="submit_video_button">SUBMIT</button>
+        </div>
+    </div>
+    <div class="url_success">
+        <h4>Thank you for adding a video, we will let you know when it's live.</h4>
+    </div>
     <div class="error">
         <h4 id="error">That username has already been claimed.</h4>
     </div>
@@ -94,6 +115,13 @@
         var email = $("input#reserve_email").val();
         var username = $("input#reserve_username").val();
         addUser(username, email);
+    })
+</script>
+<script>
+    $('#submit_video_button').click(function () {
+        var url= $("input#video_url_input").val();
+        addURL(url);
+
     })
 </script>
 
