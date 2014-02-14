@@ -8,7 +8,7 @@ function addUser(username, email){
     var userAdded = {};
     // Send the dimensions to Parse along with the 'search' event
 
-    $("#error").hide();
+    $("ul.username-error-list").hide();
     $(".spinner").show();
     var UserObject = Parse.Object.extend("PreRegUsers");
 
@@ -18,7 +18,7 @@ function addUser(username, email){
         success: function(results) {
             if (results.length > 0){
                 $(".spinner").hide();
-                $("#error").show();
+                $("ul.username-error-list").show();
                 userAdded['status'] = "user exists";
             }
             else{
@@ -30,13 +30,14 @@ function addUser(username, email){
                         $("#reserve_username_form").hide();
                         $(".spinner").hide();
                         $("#header_text").hide();
+                        $('#header_text').replaceWith ('<h1 id="header_text">Username Confirmed</h1>')
                         $(".success").fadeIn();
                         $("#social_share").fadeIn();
                         $("#submit_video").fadeIn();
                     },
                     error: function(model, error) {
                         $(".spinner").hide();
-                        $("#error").show();
+                        $("ul.username-error-list").show();
                     }
                 });
             }
@@ -64,7 +65,7 @@ function addURL(url){
         },
         error: function(model, error) {
             $(".spinner").hide();
-            $("#error").show();
+            $("ul.username-error-list").show();
         }
     });
 }

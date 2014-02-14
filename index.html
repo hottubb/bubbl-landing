@@ -74,16 +74,17 @@
     <!--script-->
     <script type="text/javascript" src="js/script.js"></script>
     <script src="js/modernizr.custom.js"></script>
+    <!--form validation-->
+
+    <script src="js/parsley.min.js"></script>
 </head>
 <body>
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "https://connect.facebook.net/en_US/all.js#xfbml=1&appId=1403301609884244";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="background_slider">
+    <div id="slidr-div" class="slider_class" style="dislay: block;">
+
+    </div>
+</div>
 
 <!-- open/close -->
 <div class="overlay overlay-slidedown">
@@ -112,14 +113,17 @@
     <h1 id="header_text">Get your spot today</h1>
 
     <div id="reserve_username_form">
-        <div id="email_field">
-            <input placeholder="ENTER YOUR EMAIL" type="email" id="reserve_email">
+        <div id="username_field" class="input_field" parsley-validate parsley-bind>
+            <input placeholder="ENTER YOUR USERNAME" type="text" id="reserve_username" parsley-trigger="keyup" required>
+            <ul class="username-error-list">
+                <li style="display: list-item;">This username is taken.</li>
+            </ul>
         </div>
-        <div id="username_field" class="input_field">
-            <input placeholder="ENTER YOUR USERNAME" type="text" id="reserve_username">
+        <div id="email_field" parsley-validate parsley-bind>
+            <input placeholder="ENTER YOUR EMAIL" type="email" id="reserve_email" parsley-type="email" parsley-trigger="keyup" required >
         </div>
         <div id="submit_field" class="input_field">
-            <button id="reserve_submit">RESERVE</button>
+            <button id="reserve_submit" type="submit">RESERVE</button>
         </div>
         <div class="spinner">
             <div class="rect1"></div>
@@ -129,22 +133,19 @@
             <div class="rect5"></div>
         </div>
     </div>
-    <div class="success" style="margin-bottom: 50px;">
-        <h4>Thank you, your username has been successfully reserved. Tell your friends!</h4>
+    <div class="success" style="margin-bottom: 10px;">
+        <h4>Do you think your friends should know?</h4>
     </div>
     <div id="social_share">
         <div class="twitter" >
-            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.bubbl.me" data-count="none" data-text="I just reserved my username at Bubbl! You should too.">Tweet</a>
-            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            <a href="http://twitter.com/intent/tweet?url=http://www.bubbl.me&text=I just reserved my username for Bubbl. You should too&hashtags=bubbl&via=BUBBLme" target="_blank"><img class="twitter_share" src="img/twitter_icon.png"></a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.bubbl.me" target="_blank"><img class="fb_share" src="img/facebook_icon.png"></a>
+            </div>
         </div>
-        <div class="facebook">
-            <div class="fb-share-button" data-href="http://www.bubbl.me" data-type="button"></div>
-        </div>
-    </div>
     <div id="submit_video">
-        <h4>Add your own video to this page. Enter a URL:</h4>
-        <div id="video_url">
-            <input placeholder="ENTER VIDEO URL" type="text" id="video_url_input">
+        <h4>Add your favorite video to our homepage:</h4>
+        <div id="video_url" parsley-validate parsley-bind>
+            <input placeholder="ENTER VIDEO URL" type="url" id="video_url_input" parsley-type="url" parsley-trigger="keyup" required>
         </div>
         <div id="submit_video_field" class="input_field">
             <button id="submit_video_button">SUBMIT</button>
@@ -164,13 +165,6 @@
 
 <!--<div class="transparent_top"></div>-->
 
-<div id="background_slider">
-    <div id="slidr-div" class="slider_class" style="dislay: block;">
-
-
-    </div>
-</div>
-
 <script type="text/javascript">
     Parse.initialize("Jk0WelF4bc67anKt8fvHQYUj25osYDlTsPoXAZzx", "9KwJ2hHLFVemLOMwlGoJgyNuGPJF0285gkp8FwBl");
     var landingPageLogUser = {
@@ -179,20 +173,6 @@
     };
     // Send the dimensions to Parse along with the 'search' event
     Parse.Analytics.track('landingPageOpens', landingPageLogUser)
-</script>
-<script>
-    $('#reserve_submit').click(function () {
-        var email = $("input#reserve_email").val();
-        var username = $("input#reserve_username").val();
-        addUser(username, email);
-    })
-</script>
-<script>
-    $('#submit_video_button').click(function () {
-        var url= $("input#video_url_input").val();
-        addURL(url);
-
-    })
 </script>
 <script>
     $('#mute_video').click(function () {
@@ -209,9 +189,12 @@
 </script>
 
 <!--Add Slider JS Library-->
-<script type="text/javascript" src="js/vendor/slidr.min.js"></script>
+<script type="text/javascript" src="js/vendor/bubbl_slider.min.js"></script>
 
 <script>
+    function partB() {
+    $('#slidr-div-control').click()
+    }
     $(document).ready(function(){
         var num_vids = 4;
         var data_slider_num = "one";
@@ -239,35 +222,35 @@
         video_array[17] = ["18", "two", "http://www.youtube.com/embed/dwGO-wwKSjg"]
         video_array[18] = ["19", "three", "http://www.youtube.com/embed/oNdgg6WzdoY#t=57"]
         video_array[19] = ["20", "four", "http://www.youtube.com/embed/q5dpbV6GklE"]
-        video_array[20] = ["21", "five", "http://www.youtube.com/embed/5WUjZ-qj4aw"]
-        video_array[21] = ["22", "six", "http://www.youtube.com/embed/pdYIGcv5rYE"]
-        video_array[22] = ["23", "seven", "http://www.youtube.com/embed/VIJ3h39mNmw"]
-        video_array[23] = ["24", "eight", "http://www.youtube.com/embed/uNcfCA9UsDQ"]
-        video_array[24] = ["25", "nine", "http://www.youtube.com/embed/JRWox-i6aAk"]
-        video_array[25] = ["26", "ten", "http://www.youtube.com/embed/LMQc8cqgvzw"]
-        video_array[26] = ["27", "eleven", "http://www.youtube.com/embed/i0A3-wc0rpw"]
-        video_array[27] = ["28", "twelve", "http://www.youtube.com/embed/A_asfZhfTBk"]
-        video_array[28] = ["29", "thirteen", "http://www.youtube.com/embed/Do1xw0hMdcs"]
-        video_array[29] = ["30", "fourteen", "http://www.youtube.com/embed/Q3VjaCy5gck"]
-        video_array[30] = ["31", "fifteen", "http://www.youtube.com/embed/rEamE0MYPkg"]
-        video_array[31] = ["32", "sixteen", "http://www.youtube.com/embed/-zzP29emgpg"]
-        video_array[32] = ["33", "one", "http://www.youtube.com/embed/JtH68PJIQLE"]
-        video_array[33] = ["35", "three", "http://www.youtube.com/embed/jDj44n5bjWU"]
-        video_array[34] = ["36", "four", "http://www.youtube.com/embed/bB2NBwGUAZU"]
-        video_array[35] = ["37", "five", "http://www.youtube.com/embed/ZBCOMG2F2Zk"]
-        video_array[36] = ["38", "six", "http://www.youtube.com/embed/kh29_SERH0Y"]
-        video_array[37] = ["39", "seven", "http://www.youtube.com/embed/Spq-K1J0yk8"]
-        video_array[38] = ["41", "nine", "http://www.youtube.com/embed/s7ozUhhvitg"]
-        video_array[39] = ["42", "ten", "http://www.youtube.com/embed/m4Bm3cs9TFo"]
-        video_array[40] = ["43", "eleven", "http://www.youtube.com/embed/YQIMGV5vtd4"]
-        video_array[41] = ["44", "twelve", "http://www.youtube.com/embed/dtVQJCq2cCM"]
+//        video_array[20] = ["21", "five", "http://www.youtube.com/embed/5WUjZ-qj4aw"]
+        video_array[20] = ["22", "six", "http://www.youtube.com/embed/pdYIGcv5rYE"]
+        video_array[21] = ["23", "seven", "http://www.youtube.com/embed/VIJ3h39mNmw"]
+        video_array[22] = ["24", "eight", "http://www.youtube.com/embed/uNcfCA9UsDQ"]
+        video_array[23] = ["25", "nine", "http://www.youtube.com/embed/JRWox-i6aAk"]
+        video_array[24] = ["26", "ten", "http://www.youtube.com/embed/LMQc8cqgvzw"]
+        video_array[25] = ["27", "eleven", "http://www.youtube.com/embed/i0A3-wc0rpw"]
+        video_array[26] = ["28", "twelve", "http://www.youtube.com/embed/A_asfZhfTBk"]
+        video_array[27] = ["29", "thirteen", "http://www.youtube.com/embed/Do1xw0hMdcs"]
+        video_array[28] = ["30", "fourteen", "http://www.youtube.com/embed/Q3VjaCy5gck"]
+        video_array[29] = ["31", "fifteen", "http://www.youtube.com/embed/rEamE0MYPkg"]
+        video_array[30] = ["32", "sixteen", "http://www.youtube.com/embed/-zzP29emgpg"]
+        video_array[31] = ["33", "one", "http://www.youtube.com/embed/JtH68PJIQLE"]
+        video_array[32] = ["35", "three", "http://www.youtube.com/embed/jDj44n5bjWU"]
+        video_array[33] = ["36", "four", "http://www.youtube.com/embed/bB2NBwGUAZU"]
+        video_array[34] = ["37", "five", "http://www.youtube.com/embed/ZBCOMG2F2Zk"]
+        video_array[35] = ["38", "six", "http://www.youtube.com/embed/kh29_SERH0Y"]
+//        video_array[37] = ["39", "seven", "http://www.youtube.com/embed/Spq-K1J0yk8"]
+//        video_array[38] = ["41", "nine", "http://www.youtube.com/embed/s7ozUhhvitg"]
+        video_array[36] = ["42", "ten", "http://www.youtube.com/embed/m4Bm3cs9TFo"]
+        video_array[37] = ["43", "eleven", "http://www.youtube.com/embed/YQIMGV5vtd4"]
+        video_array[38] = ["44", "twelve", "http://www.youtube.com/embed/dtVQJCq2cCM"]
 //        video_array[44] = ["45", "thirteen"]  GWAR VIDEO
-        video_array[42] = ["46", "fourteen", "http://www.youtube.com/embed/6v2L2UGZJAM"]
-        video_array[43] = ["48", "sixteen", "http://www.youtube.com/embed/pXSGocWifAg"]
-        video_array[44] = ["51", "sixteen", "http://www.youtube.com/embed/AzoIJlQD06E"]
-        video_array[45] = ["52", "eight", "http://www.youtube.com/embed/gHxi-HSgNPc"]
-        video_array[46] = ["53", "nine", "http://www.youtube.com/embed/uu_zwdmz0hE"]
-        video_array[47] = ["54", "ten", "https://www.youtube.com/embed/gGmfOsdla2Y"]
+        video_array[39] = ["46", "fourteen", "http://www.youtube.com/embed/6v2L2UGZJAM"]
+        video_array[40] = ["48", "sixteen", "http://www.youtube.com/embed/pXSGocWifAg"]
+//        video_array[44] = ["51", "sixteen", "http://www.youtube.com/embed/AzoIJlQD06E"]
+//        video_array[45] = ["52", "eight", "http://www.youtube.com/embed/gHxi-HSgNPc"]
+        video_array[41] = ["53", "nine", "http://www.youtube.com/embed/uu_zwdmz0hE"]
+        video_array[42] = ["54", "ten", "https://www.youtube.com/embed/gGmfOsdla2Y"]
 
         var current_vid_array = [];
 
@@ -313,6 +296,8 @@
                 data_slider_num = 'one';
                 $('#video_'+ data_slider_num).get(0).play();
                 var current_bubbl_landing_page =  0;
+                window.setTimeout(partB,1000)
+
             }
         };
 
@@ -353,7 +338,7 @@
             },
             breadcrumbs: false,
             controls: 'corner',
-            direction: 'horizontal',
+            direction: 'vertical',
             fade: true,
             keyboard: true,
             overflow: false,
@@ -362,6 +347,48 @@
         }).start();
     })
 </script>
+    <script>
+        $('#submit_field').click(function () {
+            $( '#username_field' ).parsley( 'validate' );
+            $( '#email_field' ).parsley( 'validate' );
+        })
+    </script>
+<script type="text/javascript">
+    $( '#reserve_username' ).parsley( 'addListener', {
+        onFieldValidate: function ( elem ) {
+            $( '#reserve_email' ).parsley( 'addListener', {
+                onFieldValidate: function ( elem ) {
+                    $('#reserve_submit').click(function () {
+                        var email = $("input#reserve_email").val();
+                        var username = $("input#reserve_username").val();
+                        addUser(username, email);
+                    })
+                }
+            } );
+
+        }
+    } );
+
+</script>
+
+    <script>
+    $('#submit_video_field').click(function () {
+        $( '#video_url_input' ).parsley( 'validate' );
+    })
+    </script>
+    <script type="text/javascript">
+        $( '#video_url_input' ).parsley( 'addListener', {
+            onFieldValidate: function ( elem ) {
+                $('#submit_video_button').click(function () {
+                    var url= $("input#video_url_input").val();
+                    addURL(url);
+
+                })
+            }
+        } );
+
+    </script>
+
 
 
 <script src="js/classie.js"></script>
