@@ -354,15 +354,19 @@
         })
     </script>
 <script type="text/javascript">
+    bubblLanding.loop_fix = 0;
     $( '#reserve_username' ).parsley( 'addListener', {
         onFieldValidate: function ( elem ) {
             $( '#reserve_email' ).parsley( 'addListener', {
                 onFieldValidate: function ( elem ) {
-                    $('#reserve_submit').click(function () {
-                        var email = $("input#reserve_email").val();
-                        var username = $("input#reserve_username").val();
-                        addUser(username, email);
-                    })
+                    if (bubblLanding.loop_fix == 0){
+                        $('#reserve_submit').on( "click", function() {
+                            var email = $("input#reserve_email").val();
+                            var username = $("input#reserve_username").val();
+                            addUser(username, email);
+                            bubblLanding.loop_fix = 1;
+                        })
+                    }
                 }
             } );
 
@@ -377,13 +381,16 @@
     })
     </script>
     <script type="text/javascript">
+        bubblLanding.loop_url_fix = 0;
         $( '#video_url_input' ).parsley( 'addListener', {
             onFieldValidate: function ( elem ) {
-                $('#submit_video_button').click(function () {
-                    var url= $("input#video_url_input").val();
-                    addURL(url);
-
-                })
+                if (bubblLanding.loop_url_fix == 0){
+                    $('#submit_video_button').click(function () {
+                        var url= $("input#video_url_input").val();
+                        addURL(url);
+                        bubblLanding.loop_url_fix = 1;
+                    })
+                }
             }
         } );
 

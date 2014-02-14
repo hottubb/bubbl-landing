@@ -4,6 +4,7 @@ var bubblLanding = {}
 //Set initial video
 bubblLanding.current_bubbl_landing_page = "one";
 
+
 function addUser(username, email){
     var userAdded = {};
     // Send the dimensions to Parse along with the 'search' event
@@ -25,6 +26,7 @@ function addUser(username, email){
                 var userObject = new UserObject();
                 userObject.save({username: username, email: email}, {
                     success: function(object) {
+                        console.log('PARSE SEARCH')
                         bubblLanding.email = email;
                         userAdded['status'] = "user added";
                         $("#reserve_username_form").hide();
