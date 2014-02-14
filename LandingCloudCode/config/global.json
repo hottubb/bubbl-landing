@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "_default": {
+            "link": "bubbl"
+        }, 
+        "bubbl": {
+            "applicationId": "Jk0WelF4bc67anKt8fvHQYUj25osYDlTsPoXAZzx", 
+            "masterKey": "TNkujMmMAM7NN7P4QlPEh5eYWWpzHI9j4TSLn1sT"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.2.16"
+    }
+}

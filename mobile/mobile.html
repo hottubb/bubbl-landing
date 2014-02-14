@@ -37,6 +37,7 @@
     <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.16.min.js"></script>
     <!--script-->
     <script type="text/javascript" src="../js/script.js"></script>
+    <script src="../js/parsley.min.js"></script>
 </head>
 <body>
 <div id="mobile_header_content">
@@ -50,15 +51,20 @@
 </div>
 
 <div id="mobile_main_container">
+    <h1 id="header_text">Get your spot today</h1>
+
     <div id="reserve_username_form">
-        <div id="email_field">
-            <input placeholder="ENTER YOUR EMAIL" type="email" id="reserve_email">
+        <div id="username_field" class="input_field" parsley-validate parsley-bind>
+            <input placeholder="ENTER YOUR USERNAME" type="text" id="reserve_username" parsley-trigger="keyup" required>
+            <ul class="username-error-list">
+                <li style="display: list-item;">This username is taken.</li>
+            </ul>
         </div>
-        <div id="username_field" class="input_field">
-            <input placeholder="ENTER YOUR USERNAME" type="text" id="reserve_username">
+        <div id="email_field" parsley-validate parsley-bind>
+            <input placeholder="ENTER YOUR EMAIL" type="email" id="reserve_email" parsley-type="email" parsley-trigger="keyup" required >
         </div>
         <div id="submit_field" class="input_field">
-            <button id="reserve_submit">RESERVE</button>
+            <button id="reserve_submit" type="submit">RESERVE</button>
         </div>
         <div class="spinner">
             <div class="rect1"></div>
@@ -68,22 +74,19 @@
             <div class="rect5"></div>
         </div>
     </div>
-    <div class="success">
-        <h4>Thank you, your username has been successfully reserved.</h4>
+    <div class="success" style="margin-bottom: 10px;">
+        <h4>Do you think your friends should know?</h4>
     </div>
     <div id="social_share">
         <div class="twitter" >
-            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.bubbl.me" data-count="none" data-text="I just reserved my username at Bubbl! You should too.">Tweet</a>
-            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-        </div>
-        <div class="facebook">
-            <div class="fb-share-button" data-href="http://www.bubbl.me" data-type="button"></div>
+            <a href="http://twitter.com/intent/tweet?url=http://www.bubbl.me&text=I just reserved my username for Bubbl. You should too&hashtags=bubbl&via=BUBBLme" target="_blank"><img class="twitter_share" src="../img/twitter_icon.png"></a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.bubbl.me" target="_blank"><img class="fb_share" src="../img/facebook_icon.png"></a>
         </div>
     </div>
     <div id="submit_video">
-        <h4>Add your own video to this page. Enter a URL:</h4>
-        <div id="video_url">
-            <input placeholder="ENTER VIDEO URL" type="text" id="video_url_input">
+        <h4>Add your favorite video to our homepage:</h4>
+        <div id="video_url" parsley-validate parsley-bind>
+            <input placeholder="ENTER VIDEO URL" type="url" id="video_url_input" parsley-type="url" parsley-trigger="keyup" required>
         </div>
         <div id="submit_video_field" class="input_field">
             <button id="submit_video_button">SUBMIT</button>
@@ -92,6 +95,7 @@
     <div class="url_success">
         <h4>Thank you for adding a video, we will let you know when it's live.</h4>
     </div>
+
     <div class="error">
         <h4 id="error">That username has already been claimed.</h4>
     </div>
@@ -109,21 +113,49 @@
     // Send the dimensions to Parse along with the 'search' event
     Parse.Analytics.track('landingPageOpens', landingPageLogUser)
 </script>
-
 <script>
-    $('#reserve_submit').click(function () {
-        var email = $("input#reserve_email").val();
-        var username = $("input#reserve_username").val();
-        addUser(username, email);
+    $('#submit_field').click(function () {
+        $( '#username_field' ).parsley( 'validate' );
+        $( '#email_field' ).parsley( 'validate' );
     })
 </script>
-<script>
-    $('#submit_video_button').click(function () {
-        var url= $("input#video_url_input").val();
-        addURL(url);
+<script type="text/javascript">
+    $( '#reserve_username' ).parsley( 'addListener', {
+        onFieldValidate: function ( elem ) {
+            $( '#reserve_email' ).parsley( 'addListener', {
+                onFieldValidate: function ( elem ) {
+                    $('#reserve_submit').click(function () {
+                        var email = $("input#reserve_email").val();
+                        var username = $("input#reserve_username").val();
+                        addUser(username, email);
+                    })
+                }
+            } );
 
+        }
+    } );
+
+</script>
+
+<script>
+    $('#submit_video_field').click(function () {
+        $( '#video_url_input' ).parsley( 'validate' );
     })
 </script>
+<script type="text/javascript">
+    $( '#video_url_input' ).parsley( 'addListener', {
+        onFieldValidate: function ( elem ) {
+            $('#submit_video_button').click(function () {
+                var url= $("input#video_url_input").val();
+                addURL(url);
+
+            })
+        }
+    } );
+
+</script>
+
+
 
 </body>
 </html>

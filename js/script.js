@@ -34,6 +34,19 @@ function addUser(username, email){
                         $(".success").fadeIn();
                         $("#social_share").fadeIn();
                         $("#submit_video").fadeIn();
+
+
+//                        Add to Mailchimp
+                        $.ajax({
+                            type: "GET",
+                            url:"http://us3.api.mailchimp.com/1.3/?method=listSubscribe&apikey=cc25eff96f3ec264eff864e84e76d842-us3&id=77ad7a8643&email_address="+email,
+
+                            success: function(e) {
+                                console.log('sending MC')
+                            }
+                        });
+                        return false;
+
                     },
                     error: function(model, error) {
                         $(".spinner").hide();
