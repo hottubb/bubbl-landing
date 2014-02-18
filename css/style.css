@@ -47,7 +47,7 @@ body {
   #header_content #mute_video {
     padding-top: 43px; }
     #header_content #mute_video img {
-      height: 33px;
+      height: 30px;
       cursor: pointer; }
 
 aside[id="{slidr-id}-control"] .slidr-control:hover {

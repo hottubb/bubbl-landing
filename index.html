@@ -192,9 +192,6 @@
 <script type="text/javascript" src="js/vendor/bubbl_slider.min.js"></script>
 
 <script>
-    function partB() {
-    $('#slidr-div-control').click()
-    }
     $(document).ready(function(){
         var num_vids = 4;
         var data_slider_num = "one";
@@ -296,13 +293,11 @@
                 data_slider_num = 'one';
                 $('#video_'+ data_slider_num).get(0).play();
                 var current_bubbl_landing_page =  0;
-                window.setTimeout(partB,1000)
-
             }
         };
 
 
-        slidr.create('slidr-div', {
+        bubblLanding.slidr = slidr.create('slidr-div', {
             after: function(e) {
 
             },
@@ -351,6 +346,7 @@
         $('#submit_field').click(function () {
             $( '#username_field' ).parsley( 'validate' );
             $( '#email_field' ).parsley( 'validate' );
+
         })
     </script>
 <script type="text/javascript">
@@ -397,6 +393,43 @@
     </script>
 
 
+<script>
+    $("body").on("keydown", function(e){
+        if(e.keyCode === 38) {
+            // up
+            bubblLanding.slidr.slide('up');
+        }
+        else if(e.keyCode === 40) {
+            // down
+            bubblLanding.slidr.slide('down');
+        }
+    });
+</script>
+<script>
+    function rebindScroll(){
+        var lastScrollTop = 0;
+        $(window).scroll(function(event){
+            var st = $(this).scrollTop();
+            if (st > lastScrollTop){
+                BubblSlidrDown();
+            } else {
+                BubblSlidrUp();
+            }
+            lastScrollTop = st;
+        });
+    };
+    function BubblSlidrDown(){
+        bubblLanding.slidr.slide('down');
+        window.setTimeout(rebindScroll,500)
+        $(window).unbind('scroll');
+    };
+    function BubblSlidrUp(){
+        bubblLanding.slidr.slide('up');
+        window.setTimeout(rebindScroll,500)
+        $(window).unbind('scroll');
+    };
+    rebindScroll();
+</script>
 
 <script src="js/classie.js"></script>
 <script src="js/demo1.js"></script>
