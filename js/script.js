@@ -32,7 +32,7 @@ function addUser(username, email){
                         $("#reserve_username_form").hide();
                         $(".spinner").hide();
                         $("#header_text").hide();
-                        $('#header_text').replaceWith ('<h1 id="header_text">Username Confirmed</h1>')
+                        $('#header_text').replaceWith ('<h1 id="header_text">Username Reserved</h1>')
                         $(".success").fadeIn();
                         $("#social_share").fadeIn();
                         $("#submit_video").fadeIn();
