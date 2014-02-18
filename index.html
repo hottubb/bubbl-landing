@@ -15,7 +15,7 @@
     <!--Fonts-->
 
     <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.011.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <script>
@@ -72,7 +72,7 @@
     <!-- parse -->
     <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.16.min.js"></script>
     <!--script-->
-    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/script-ck.js"></script>
     <script src="js/modernizr.custom.js"></script>
     <!--form validation-->
 
@@ -81,7 +81,7 @@
 <body>
 
 <div id="background_slider">
-    <div id="slidr-div" class="slider_class" style="dislay: block;">
+    <div id="slidr-div" class="slider_class" >
 
     </div>
 </div>
@@ -114,13 +114,13 @@
 
     <div id="reserve_username_form">
         <div id="username_field" class="input_field" parsley-validate parsley-bind>
-            <input placeholder="ENTER YOUR USERNAME" type="text" id="reserve_username" parsley-trigger="keyup" required>
+            <input placeholder="ENTER YOUR USERNAME" type="text" id="reserve_username" parsley-trigger="keyup" parsley-error-message="Please enter a username" required>
             <ul class="username-error-list">
                 <li style="display: list-item;">This username is taken.</li>
             </ul>
         </div>
         <div id="email_field" parsley-validate parsley-bind>
-            <input placeholder="ENTER YOUR EMAIL" type="email" id="reserve_email" parsley-type="email" parsley-trigger="keyup" required >
+            <input placeholder="ENTER YOUR EMAIL" type="email" id="reserve_email" parsley-trigger="keyup" parsley-error-message="Please enter a valid email" parsley-type="email" required >
         </div>
         <div id="submit_field" class="input_field">
             <button id="reserve_submit" type="submit">RESERVE</button>
@@ -344,63 +344,37 @@
 </script>
     <script>
         $('#submit_field').click(function () {
-            $( '#username_field' ).parsley( 'validate' );
-            $( '#email_field' ).parsley( 'validate' );
+            var un_validate = $( '#username_field' ).parsley( 'validate' );
+            var em_validate = $( '#email_field' ).parsley( 'validate' );
 
+            if (un_validate){
+                if (em_validate){
+                    var email = $("input#reserve_email").val();
+                    var username = $("input#reserve_username").val();
+                    addUser(username, email);
+                    bubblLanding.loop_fix = 1;
+                }
+            }
         })
     </script>
-<script type="text/javascript">
-    bubblLanding.loop_fix = 0;
-    $( '#reserve_username' ).parsley( 'addListener', {
-        onFieldValidate: function ( elem ) {
-            $( '#reserve_email' ).parsley( 'addListener', {
-                onFieldValidate: function ( elem ) {
-                    if (bubblLanding.loop_fix == 0){
-                        $('#reserve_submit').on( "click", function() {
-                            var email = $("input#reserve_email").val();
-                            var username = $("input#reserve_username").val();
-                            addUser(username, email);
-                            bubblLanding.loop_fix = 1;
-                        })
-                    }
-                }
-            } );
 
-        }
-    } );
-
-</script>
 
     <script>
     $('#submit_video_field').click(function () {
-        $( '#video_url_input' ).parsley( 'validate' );
+        var url_validate = $( '#video_url_input' ).parsley( 'validate' );
+        if (url_validate){
+            var url= $("input#video_url_input").val();
+            addURL(url);
+            bubblLanding.loop_url_fix = 1;
+        }
     })
     </script>
-    <script type="text/javascript">
-        bubblLanding.loop_url_fix = 0;
-        $( '#video_url_input' ).parsley( 'addListener', {
-            onFieldValidate: function ( elem ) {
-                if (bubblLanding.loop_url_fix == 0){
-                    $('#submit_video_button').click(function () {
-                        var url= $("input#video_url_input").val();
-                        addURL(url);
-                        bubblLanding.loop_url_fix = 1;
-                    })
-                }
-            }
-        } );
-
-    </script>
-
-
 <script>
     $("body").on("keydown", function(e){
         if(e.keyCode === 38) {
-            // up
             bubblLanding.slidr.slide('up');
         }
         else if(e.keyCode === 40) {
-            // down
             bubblLanding.slidr.slide('down');
         }
     });

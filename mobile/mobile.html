@@ -55,13 +55,13 @@
 
     <div id="reserve_username_form">
         <div id="username_field" class="input_field" parsley-validate parsley-bind>
-            <input placeholder="ENTER YOUR USERNAME" type="text" id="reserve_username" parsley-trigger="keyup" required>
+            <input placeholder="ENTER YOUR USERNAME" type="text" id="reserve_username" parsley-trigger="keyup" parsley-error-message="Please enter a username" required>
             <ul class="username-error-list">
                 <li style="display: list-item;">This username is taken.</li>
             </ul>
         </div>
         <div id="email_field" parsley-validate parsley-bind>
-            <input placeholder="ENTER YOUR EMAIL" type="email" id="reserve_email" parsley-type="email" parsley-trigger="keyup" required >
+            <input placeholder="ENTER YOUR EMAIL" type="email" id="reserve_email" parsley-trigger="keyup" parsley-error-message="Please enter a valid email" parsley-type="email" required >
         </div>
         <div id="submit_field" class="input_field">
             <button id="reserve_submit" type="submit">RESERVE</button>
@@ -115,46 +115,31 @@
 </script>
 <script>
     $('#submit_field').click(function () {
-        $( '#username_field' ).parsley( 'validate' );
-        $( '#email_field' ).parsley( 'validate' );
+        var un_validate = $( '#username_field' ).parsley( 'validate' );
+        var em_validate = $( '#email_field' ).parsley( 'validate' );
+
+        if (un_validate){
+            if (em_validate){
+                var email = $("input#reserve_email").val();
+                var username = $("input#reserve_username").val();
+                addUser(username, email);
+                bubblLanding.loop_fix = 1;
+            }
+        }
     })
 </script>
-<script type="text/javascript">
-    $( '#reserve_username' ).parsley( 'addListener', {
-        onFieldValidate: function ( elem ) {
-            $( '#reserve_email' ).parsley( 'addListener', {
-                onFieldValidate: function ( elem ) {
-                    $('#reserve_submit').click(function () {
-                        var email = $("input#reserve_email").val();
-                        var username = $("input#reserve_username").val();
-                        addUser(username, email);
-                    })
-                }
-            } );
 
-        }
-    } );
-
-</script>
 
 <script>
     $('#submit_video_field').click(function () {
-        $( '#video_url_input' ).parsley( 'validate' );
+        var url_validate = $( '#video_url_input' ).parsley( 'validate' );
+        if (url_validate){
+            var url= $("input#video_url_input").val();
+            addURL(url);
+            bubblLanding.loop_url_fix = 1;
+        }
     })
 </script>
-<script type="text/javascript">
-    $( '#video_url_input' ).parsley( 'addListener', {
-        onFieldValidate: function ( elem ) {
-            $('#submit_video_button').click(function () {
-                var url= $("input#video_url_input").val();
-                addURL(url);
-
-            })
-        }
-    } );
-
-</script>
-
 
 
 </body>
