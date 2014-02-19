@@ -15,7 +15,7 @@
     <!--Fonts-->
 
     <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="css/style.011.css">
+    <link rel="stylesheet" href="css/style.012.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <script>
@@ -89,7 +89,17 @@
 <!-- open/close -->
 <div class="overlay overlay-slidedown">
     <button type="button" class="overlay-close">Close</button>
+    <div class="center_loader">
+        <div id="youtube_loader">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+        </div>
+    </div>
     <div id="youtube_overlay" class="videoWrapper"></div>
+
 </div>
 
 
@@ -138,8 +148,8 @@
     </div>
     <div id="social_share">
         <div class="twitter" >
-            <a href="http://twitter.com/intent/tweet?url=http://www.bubbl.me&text=I just reserved my username for Bubbl. You should too&hashtags=bubbl&via=BUBBLme" target="_blank"><img class="twitter_share" src="img/twitter_icon.png"></a>
-            <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.bubbl.me" target="_blank"><img class="fb_share" src="img/facebook_icon.png"></a>
+            <a href="http://twitter.com/intent/tweet?url=http://www.bubbl.me&text=I just reserved my username for Bubbl. You should too!&hashtags=bubbl&via=BUBBLme" target="_blank"><img class="twitter_share" src="img/twitter_icon.png"></a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.bubbl.me&t=I just reserved my username for Bubbl. You should too!" target="_blank"><img class="fb_share" src="img/facebook_icon.png"></a>
             </div>
         </div>
     <div id="submit_video">
@@ -158,7 +168,7 @@
     <div class="error">
         <h4 id="error">That username has already been claimed.</h4>
     </div>
-    <h4>CLIP  /  SNIP  /  SHARE</h4>
+    <h4>CLIP  /  SNIP  /  FLIP</h4>
     <h5>Spring, 2014 in the Apple Store</h5>
 
 </div>
@@ -202,7 +212,7 @@
 
         video_array[0] = ["1", "one", "http://www.youtube.com/embed/1EDMyYZGmqU"]
         video_array[1] = ["2", "two", "http://www.youtube.com/embed/VKG4Tgvvd_E"]
-        video_array[2] = ["3", "three", "http://www.youtube.com/embed/iOeIFFGFkrA"]
+        video_array[2] = ["3", "three", "http://www.youtube.com/embed/PDboaDrHGbA"]
         video_array[3] = ["4", "four", "http://www.youtube.com/embed/2G92m90uuzI"]
         video_array[4] = ["5", "five", "http://www.youtube.com/embed/7Me3LO-3JEs"]
         video_array[5] = ["6", "six", "http://www.youtube.com/embed/-K6vaxOQFsw"]
@@ -233,8 +243,8 @@
         video_array[30] = ["32", "sixteen", "http://www.youtube.com/embed/-zzP29emgpg"]
         video_array[31] = ["33", "one", "http://www.youtube.com/embed/JtH68PJIQLE"]
         video_array[32] = ["35", "three", "http://www.youtube.com/embed/jDj44n5bjWU"]
-        video_array[33] = ["36", "four", "http://www.youtube.com/embed/bB2NBwGUAZU"]
-        video_array[34] = ["37", "five", "http://www.youtube.com/embed/ZBCOMG2F2Zk"]
+//        video_array[33] = ["36", "four", "http://www.youtube.com/embed/bB2NBwGUAZU"]
+        video_array[34] = ["37", "five", "http://www.youtube.com/embed/-hfKtUT4ISs"]
         video_array[35] = ["38", "six", "http://www.youtube.com/embed/kh29_SERH0Y"]
 //        video_array[37] = ["39", "seven", "http://www.youtube.com/embed/Spq-K1J0yk8"]
 //        video_array[38] = ["41", "nine", "http://www.youtube.com/embed/s7ozUhhvitg"]
@@ -261,7 +271,7 @@
                     console.log(random_number);
                     random_number = Math.floor(Math.random()*video_array.length);
                     if ($.inArray(random_number, current_vid_array) !== -1){
-                        random_number=47
+                        random_number=2
                     }
                 }
             }
