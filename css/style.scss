@@ -410,7 +410,7 @@ ul.username-error-list
   }
   #contact_zone{
     padding-top: 30px;
-   text-align: center;
+    text-align: center;
     color: $bubbl_green;
   }
   a:link{
@@ -418,8 +418,12 @@ ul.username-error-list
     color: $bubbl_green;
     text-decoration: none;
   }
+  a:visited {
+    font-size: .8em;
+    color: $bubbl_green;
+    text-decoration: none;
+  }
   #blog_link{
-
     padding-right: 10px;
     font-size: .8em;
   }
@@ -431,10 +435,10 @@ ul.username-error-list
 
 #mobile_main_container{
   //  background-color:rgba(0,0,0,0.5);
-  width: 74%;
+  width: 90%;
   height: auto;
   z-index: -999;
-  margin-top: 100px;
+  margin-top: 40px;
   display: block;
   padding-left: 10%;
   border-radius:10px;

@@ -109,8 +109,9 @@
     </div>
     <div id="contact_zone">
         <a id="blog_link" href="http://bubbl-me.tumblr.com" target="_blank">BLOG</a>/
-        <a id="contact_link" href="mailto:info@bubbl.me">CONTACT</a>
+        <a id="contact_link" href="mailto:info@bubbl.me" target="_blank">CONTACT</a>
     </div>
+
     <div class="full_content_container" id="trigger-overlay">
         <img id="full_content_image" src="img/splash_icons/full_content_40.png" alt="View Full Video">
     </div>
@@ -393,7 +394,7 @@
     function rebindScroll(){
         var lastScrollTop = 0;
         $(window).scroll(function(event){
-            var st = $(this).scrollTop();
+            var st = $(window).scrollTop();
             if (st > lastScrollTop){
                 BubblSlidrDown();
             } else {
@@ -412,9 +413,10 @@
         window.setTimeout(rebindScroll,500)
         $(window).unbind('scroll');
     };
-    rebindScroll();
-</script>
 
+    rebindScroll();
+
+</script>
 <script src="js/classie.js"></script>
 <script src="js/demo1.js"></script>
 
