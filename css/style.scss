@@ -620,28 +620,28 @@ ul.username-error-list
   @media (min-height: 1000px) and (max-height: 1280px) {
     /* some CSS for small resolution */
     .background_video{
-    height: 1280px;
+    height: 1380px;
     right: 0px;
     }
   }
   @media (min-height: 800px) and (max-height: 999px) {
     /* some CSS for small resolution */
     .background_video{
-      height: 1000px;
+      height: 1100px;
       right: 0px;
     }
   }
   @media (min-height: 500px) and (max-height: 799px) {
     /* some CSS for small resolution */
     .background_video{
-      height: 800px;
+      height: 900px;
       right: 0px;
     }
   }
   @media (min-height: 1px) and (max-height: 499px) {
     /* some CSS for small resolution */
     .background_video{
-      height: 500px;
+      height: 600px;
       right: 0px;
     }
   }
@@ -865,4 +865,11 @@ section button {
   .overlay ul li {
     min-height: 34px;
   }
+}
+
+.demo_video_div{
+    margin-left: auto;
+    margin-right: auto;
+    .demo_video{
+    }
 }
